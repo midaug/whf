@@ -1,0 +1,56 @@
+{
+    "receiver": "default",
+    "status": "resolved",
+    "alerts": [
+        {
+            "status": "resolved",
+            "labels": {
+                "alertname": "DiskRunningFull",
+                "dev": "sda1",
+                "instance": "example1",
+                "msgtype": "testing"
+            },
+            "annotations": {
+                "info": "The disk sda1 is running full",
+                "summary": "please check the instance example1"
+            },
+            "startsAt": "2022-05-27T11:09:09.9176062Z",
+            "endsAt": "2022-05-27T11:14:09.9176062Z",
+            "generatorURL": "",
+            "fingerprint": "2ce617d4b9f79e0c"
+        },
+        {
+            "status": "resolved",
+            "labels": {
+                "alertname": "DiskRunningFull",
+                "dev": "sda2",
+                "instance": "example1",
+                "msgtype": "testing"
+            },
+            "annotations": {
+                "info": "The disk sda2 is running full",
+                "runbook": "the following link http://test-url should be clickable",
+                "summary": "please check the instance example1"
+            },
+            "startsAt": "2022-05-27T11:09:09.9176062Z",
+            "endsAt": "2022-05-27T11:14:09.9176062Z",
+            "generatorURL": "",
+            "fingerprint": "54641738132b8e37"
+        }
+    ],
+    "groupLabels": {
+        "alertname": "DiskRunningFull"
+    },
+    "commonLabels": {
+        "alertname": "DiskRunningFull",
+        "instance": "example1",
+        "msgtype": "testing"
+    },
+    "commonAnnotations": {
+        "summary": "please check the instance example1"
+    },
+    "externalURL": "http://e6d9f218a49b:9093",
+    "version": "4",
+    "groupKey": "{}/{alertname=~\"^(?:.+)$\"}:{alertname=\"DiskRunningFull\"}",
+    "truncatedAlerts": 0
+}

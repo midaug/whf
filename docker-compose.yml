@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  whf:
+    build: .
+    container_name: whf
+    restart: always
+    network_mode: bridge
+    volumes:
+      - ./js:/data/js:ro
+    ports:
+      - "9090:9090"
