@@ -18,7 +18,7 @@ import (
 
 var tp string           //模板路径
 var jsDateFormat string //js定义的默认方法
-//初始化加载
+// 初始化加载
 func runInit() {
 	jsDateFormat = `function dateFormat(date, fmt) {
         if (!fmt){
@@ -49,7 +49,7 @@ func runInit() {
     `
 }
 
-//校验路径是否存在
+// 校验路径是否存在
 func PathExists(path string) (bool, error) {
 	_, err := os.Stat(path)
 	if err == nil {
@@ -61,7 +61,7 @@ func PathExists(path string) (bool, error) {
 	return false, err
 }
 
-//http返回封装
+// http返回封装
 func requestReturn(w http.ResponseWriter, code int, msg string) {
 	w.WriteHeader(code)
 	if code != 200 {
@@ -70,7 +70,7 @@ func requestReturn(w http.ResponseWriter, code int, msg string) {
 	fmt.Fprintf(w, msg)
 }
 
-//otto中获取变量值
+// otto中获取变量值
 func getValueToString(vm *otto.Otto, name string) string {
 	if value, err := vm.Get(name); err == nil {
 		if valueStr, err := value.ToString(); err == nil {
@@ -79,7 +79,8 @@ func getValueToString(vm *otto.Otto, name string) string {
 	}
 	return ""
 }
-//发送post请求
+
+// 发送post请求
 func httpPostJson(u string, contentType string, body string) {
 	bodyBytes := []byte(body)
 	req, err := http.NewRequest("POST", u, bytes.NewBuffer(bodyBytes))
@@ -96,7 +97,7 @@ func httpPostJson(u string, contentType string, body string) {
 	log.Println("info: httpPostJson > code=", statuscode, " body=", string(respBody))
 }
 
-//http路由方法 /send
+// http路由方法 /send
 func send(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm() // 解析参数，默认是不会解析的
 	log.Println("info: =======================================================")
