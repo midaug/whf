@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -49,7 +49,7 @@ func runInit() {
     `
 }
 
-// 校验路径是否存在
+// PathExists 校验路径是否存在
 func PathExists(path string) (bool, error) {
 	_, err := os.Stat(path)
 	if err == nil {
@@ -92,9 +92,9 @@ func httpPostJson(u string, contentType string, body string) {
 		// handle error
 	}
 	defer resp.Body.Close()
-	statuscode := resp.StatusCode
-	respBody, _ := ioutil.ReadAll(resp.Body)
-	log.Println("info: httpPostJson > code=", statuscode, " body=", string(respBody))
+	statusCode := resp.StatusCode
+	respBody, _ := io.ReadAll(resp.Body)
+	log.Println("info: httpPostJson > code=", statusCode, " body=", string(respBody))
 }
 
 // http路由方法 /send
@@ -116,7 +116,7 @@ func send(w http.ResponseWriter, r *http.Request) {
 
 	//先读入js模板文件内容
 	jsFilePath := tp + "/" + tn + ".js"
-	jsBytes, err := ioutil.ReadFile(jsFilePath)
+	jsBytes, err := os.ReadFile(jsFilePath)
 	if err != nil {
 		requestReturn(w, 400, "Err! tn file is not found > "+jsFilePath)
 		return
